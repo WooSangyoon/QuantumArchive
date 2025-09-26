@@ -25,7 +25,7 @@ export default function Home() {
         A Personal Archive of Quantum Machine Learning Studies.
       </p>
       <a
-        href="https://github.com/your-username/your-repo"
+        href="https://github.com/WooSangyoon/QuantumArchive"
         target="_blank"
         rel="noopener noreferrer"
         className="mt-6 flex rounded-lg bg-white/20 px-5 py-1.5  font-medium text-white  hover:bg-white/30 transition"
