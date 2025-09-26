@@ -2,9 +2,9 @@
   "name": "rubix-documents",
   "version": "1.0.1",
   "private": false,
+  "homepage": "https://github.com/WooSangyoon/QuantumArchive",
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
     "start": "next start",
     "lint": "npx lint . --quiet",
     "lint:fix": "npx lint . --fix --quiet",
@@ -14,7 +14,10 @@
     "update": "npx npm-check-updates -u && npm install && npm run clean",
     "generate-content-json": "ts-node scripts/content.ts",
     "generate-content-json:ide": "node -r esbuild-register scripts/content.ts",
-    "prepare": "husky"
+    "prepare": "husky",
+    "build": "next build && next export",
+    "predeploy": "npm run build",
+    "deploy": "touch out/.nojekyll && gh-pages -d out --dotfiles"
   },
   "dependencies": {
     "@next/third-parties": "^15.5.3",
