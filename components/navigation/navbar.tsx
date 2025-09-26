@@ -10,6 +10,13 @@ import { Logo } from "@/components/navigation/logo"
 import { SheetLeft } from "@/components/navigation/sidebar"
 // import { ModeToggle } from "@/components/navigation/theme-toggle"
 
+// 네비게이션 아이템 타입: external 은 선택 필드(없어도 됨)
+export interface NavItem {
+  title: string
+  href: string
+  external?: boolean
+}
+
 export function Navbar() {
   return (
     <nav className="bg-opacity-5 sticky top-0 z-50 h-16 w-full border-b px-2 backdrop-blur-xl backdrop-filter md:px-4">
@@ -48,10 +55,14 @@ export function Navbar() {
   )
 }
 
-export function NavMenu({ isSheet = false }) {
+export function NavMenu({ isSheet = false }: { isSheet?: boolean }) {
   return (
     <>
-      {Navigations.map((item) => {
+      {Navigations.map((item: NavItem) => {
+        // external 이 명시돼 있으면 우선 사용, 없으면 href로 자동 판별
+        const isExternal =
+          item.external ?? /^https?:\/\//.test(item.href)
+
         const Comp = (
           <Anchor
             key={item.title + item.href}
@@ -59,15 +70,16 @@ export function NavMenu({ isSheet = false }) {
             absolute
             className="flex items-center gap-1 text-sm"
             href={item.href}
-            target={item.external ? "_blank" : undefined}
-            rel={item.external ? "noopener noreferrer" : undefined}
+            target={isExternal ? "_blank" : undefined}
+            rel={isExternal ? "noopener noreferrer" : undefined}
           >
             {item.title}{" "}
-            {item.external && (
+            {isExternal && (
               <LuArrowUpRight className="h-3 w-3 align-super" strokeWidth={3} />
             )}
           </Anchor>
         )
+
         return isSheet ? (
           <SheetClose key={item.title + item.href} asChild>
             {Comp}
