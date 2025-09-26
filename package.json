@@ -15,7 +15,7 @@
     "generate-content-json": "ts-node scripts/content.ts",
     "generate-content-json:ide": "node -r esbuild-register scripts/content.ts",
     "prepare": "husky",
-    "build": "next build && next export",
+    "build": "next build",
     "predeploy": "npm run build",
     "deploy": "touch out/.nojekyll && gh-pages -d out --dotfiles"
   },
