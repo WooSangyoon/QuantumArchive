@@ -10,7 +10,6 @@ import { Logo } from "@/components/navigation/logo"
 import { SheetLeft } from "@/components/navigation/sidebar"
 // import { ModeToggle } from "@/components/navigation/theme-toggle"
 
-// 네비게이션 아이템 타입: external 은 선택 필드(없어도 됨)
 export interface NavItem {
   title: string
   href: string
